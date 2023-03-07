@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les directives</title>
+</head>
+<body ng-app>
+
+    <input type="text" ng-model="query"/>
+
+    <select ng-model="order">
+        <option value="username">Organiser par Nom</option>
+        <option value="content">Organiser par contenu</option>
+    </select>
+
+    <div ng-init="users=[{username:'Marc', content:'salut les gens'}, 
+    {username:'Jean', content:'je suis content'},
+     {username:'Vici', content:'je suis Vici first'}]">
+
+            <div ng-repeat="user in users | filter:{content:query} | orderBy:order">
+                <p>
+                    <strong>{{user.username}}</strong><br>
+                    {{user.content}}
+                </p>
+            </div>
+
+        <!-- {{users | filter: 'i' }} -->
+    </div>
+    
+   <!--import from angular.org by CDN url-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    
+</body>
+</html>
+
+<!-- Définition de Directives 
+    les directives  sont des attributs HTML ou des class qui permmettent de s'insère un comportement particulier  un élément HTML.
+
+     En résumé: les directives vous permet de booster votre HTML celles HTML sous stéroides.
+-->
+
+<!--
+    ng-model - qui permet automatiquement de prendre une valeur qui va être tapé dans un champs ou dans un Select et de la stocker dans une variable au niveau du scope.
+    ng-init - qui permet automatiquement d'injecter une variable dans la scope à l'initialisation.
+    ng-repeat - qui permet de dupliquer un element HTML autant de fois qu'il y'a de valeur dans un objet.
+
+    filter: - qui permet à la fois modifier les variables en utlisant différentes fonctions donc on a des fonction par défaut qui sont disponibles dans la documention, soustraire et de supprimer des éléments qui compte suivant des critères particuliers 
+    orderBy - qui permet d'organiser suivant des critères 
+
+-->
