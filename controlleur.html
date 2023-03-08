@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ControlleuretScope</title>
+</head>
+<body ng-app>
+
+    <input type="text" ng-model="query"/>
+
+    <select ng-model="order">
+        <option value="username">Organiser par Nom</option>
+        <option value="content">Organiser par contenu</option>
+    </select>
+
+    <div ng-controller="CommentsCtrl">
+        <div ng-repeat="comment in comments | 
+        filter:{content: query} | orderBy:order">
+                <p>
+                    <strong>{{comment.username}}</strong><br>
+                    {{comment.content}}
+                </p>
+        </div>
+
+    </div>
+    
+   <!--import from angular.org by CDN url-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+
+<!--scope - c'est un système qui permet de faire la liaison entre le contrôleur et la vue.-->
+
+    <script>
+        function CommentsCtrl($scope){
+            console.log($scope);
+            
+            $scope.comments = [
+            {
+            "username" : "Angelina",
+            "city" : "Bellamy",
+            "email" : "angel@gmail.com",
+            "content" : "elit is good",
+             },
+            {
+            "username" : "Mills",
+            "city" : "Ubarna",
+            "email" : "mills@gmail.com",
+            "content" : "elite is not good",
+             },
+             {
+            "username" : "jean",
+            "city" : "sabondy",
+            "email" : "jean7@gmail.com",
+            "content" : "elite is not waste",
+             }
+         ];
+
+        }
+    </script>
+    
+</body>
+</html>
