@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope</title>
+</head>
+<body ng-app="MonApp">
+
+    <div ng-controller="CommentsCtrl" >
+
+       <input type="text" ng-model="query"/>
+       {{query}}
+
+       <select ng-model="order">
+        <option value="username">Organiser par Nom</option>
+        <option value="content">Organiser par contenu</option>
+         </select>
+
+    
+        <div ng-repeat="comment in comments | 
+        filter:{content: query} | orderBy:order">
+                <p>
+                    <strong>{{comment.username}}</strong><br>
+                    {{comment.content}}
+                </p>
+                <input type="text" ng-model="query"/>
+
+        </div>
+
+    </div>
+    
+   <!--import from angular.js by CDN url-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!--import from anuglar.js-animate.js-->
+    <script src="https://code.angularjs.org/1.8.2/angular-animate.js"></script>
+
+
+    <script>
+        /*impoter angular module*/
+        var app = angular.module('MonApp', []);
+        
+        app.controller('CommentCtrl', function ($scope){
+            /*console.log($scope);*/ 
+            
+            $scope.comments = [
+            {
+            "username" : "Angelina",
+            "city" : "Bellamy",
+            "email" : "angel@gmail.com",
+            "content" : "elit is good",
+             },
+            {
+            "username" : "Mills",
+            "city" : "Ubarna",
+            "email" : "mills@gmail.com",
+            "content" : "elite is not good",
+             },
+             {
+            "username" : "jean",
+            "city" : "sabondy",
+            "email" : "jean7@gmail.com",
+            "content" : "elite is not waste",
+             }
+         ];
+
+        });
+    </script>
+    
+</body>
+</html>
