@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routes</title>
+</head>
+<body ng-app="MonApp">
+
+    <div ng-view></div>
+    
+   <!--import from angular.js by CDN url-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <!--import from anuglar.js-routes.js-->
+    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+
+
+    <script>
+        /*impoter angular module*/
+        var app = angular.module('MonApp', [ngRoute]);
+        /*Routes*/
+        app.config(function($routeProvider){
+            $routeProvider
+                .when ('/', {templateUrl: '/home.html', controller: 'PostsCtrl'})
+                .when ('/comments/:id', {templateUrl: '/comments.html', controller: 'CommentCtrl'})
+                .otherwise({redirectTo: '/'});
+
+        });
+
+        app.controller('PostsCtrl', function ($scope){
+            $scope.posts = [
+            {
+            "id" : 0,
+            "username" : "Angelina",
+            "city" : "Bellamy",
+            "email" : "angel@gmail.com",
+            "content" : "elit is good",
+             },
+            {
+            "id" : 1,
+            "username" : "Mills",
+            "city" : "Ubarna",
+            "email" : "mills@gmail.com",
+            "content" : "elite is not good",
+             },
+             {
+            "id" : 2,
+            "username" : "jean",
+            "city" : "sabondy",
+            "email" : "jean7@gmail.com",
+            "content" : "elite is not waste",
+             }
+         ];
+
+        })
+        
+        app.controller('CommentCtrl', function ($scope){
+            
+
+        });
+    </script>
+    
+</body>
+</html>
